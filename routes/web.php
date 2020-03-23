@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'PostController@index');
+Route::post('/images', 'PostController@uploadImage')->name('post.image');
+Route::post('/', 'PostController@store')->name('post.store');
+
+Route::group(['prefix' => 'filemanager'], function() {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
 });
